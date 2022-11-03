@@ -1,0 +1,95 @@
+---
+title: "Assignment B-1"
+output: github_document
+date: "2022-11-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Introuction 
+Have you ever forgotten your dice at home but remembered to bring your laptop to a D&D session? Are you tired of simple addition and wish that someone could do just one step of combat for you? Then this function is for you! 
+
+note that for this document to work you'll need the tidyverse and testthat packages 
+```{r}
+suppressWarnings(library(testthat))
+suppressPackageStartupMessages(suppressWarnings(library(tidyverse)))
+```
+
+#### Use the function 
+It's easy! Simply enter your attack modifier, then the enemy AC, and R will print out if it hits or misses! 
+It looks something like this: 
+For a +2 to hit against and enemy with an 18 AC: 
+attack(2, 18)
+
+The function only accepts single numbers for the two arguments - Sorry, you can't enter your whole data frame! 
+Here's the function: 
+```{r}
+#' D20 attack: Hit or miss? 
+#' 
+#' Enter an attack modifier,  enemy AC, and see if your attack hits or misses. 
+#' It "rolls" the 20 sided dice for you (by picking a random number from 1-20), 
+#' adds your modifier, and sees if that result is greater than 
+#' or equal to the enemy AC. 
+#' 
+#' @param mod (this is your attack modifier)
+#' @param ac  (this is the enemy AC)
+#'
+#' @return Prints "hit!" or "miss!" depending on if the total "attack roll" is >= the AC of the "monster"
+#' 
+attack <- function(mod, ac) {
+  if (!is.numeric(mod)) {
+    stop("Your input must be numbers!")
+  }
+  if (!is.numeric(ac)) {
+    stop("Your input must be numbers!")
+  }
+  if(length(mod) > 1) {
+    stop("Too many numbers!")
+    }
+  if(length(ac) > 1) {
+    stop("Too many numbers!")
+  }
+  if((sum(sample(1:20, 1)+mod)) >= ac) 
+    print ("Hit!") 
+  else 
+    print ("Miss!")
+}
+```
+
+#### Testing 
+
+Does it work in general? 
+
+```{r}
+test_that("Does it print?", expect_output(attack(2, 15)))
+```
+
+
+```{r}
+test_that("Misses work", {expect_equal(attack(0, 100), "Miss!")})
+```
+
+```{r}
+test_that("Hits work", {expect_equal(attack(100, 10), "Hit!")})
+```
+Here's two examples that show my custom error code: 
+
+```{r error=TRUE}
+attack("x", 10)
+```
+
+```{r, error = TRUE}
+attack(c(1,5), 15)
+```
+
+And here's some error tests in general: 
+```{r}
+test_that("throws error", expect_error(attack(10, 10, 10)))
+```
+
+```{r}
+test_that("throws error", expect_error(attack(ten, ten)))
+```
+
