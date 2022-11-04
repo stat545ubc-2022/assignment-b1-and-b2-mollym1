@@ -23,8 +23,7 @@ It’s easy! Simply enter your attack modifier, then the enemy AC, and R
 will print out if it hits or misses! It looks something like this: For a
 +2 to hit against and enemy with an 18 AC: attack(2, 18)
 
-The function only accepts single numbers for the two arguments - Sorry,
-you can’t enter your whole data frame! Here’s the function:
+Here’s the function:
 
 ``` r
 #' D20 attack: Hit or miss? 
@@ -45,12 +44,6 @@ attack <- function(mod, ac) {
   }
   if (!is.numeric(ac)) {
     stop("Your input must be numbers!")
-  }
-  if(length(mod) > 1) {
-    stop("Too many numbers!")
-    }
-  if(length(ac) > 1) {
-    stop("Too many numbers!")
   }
   if((sum(sample(1:20, 1)+mod)) >= ac) 
     print ("Hit!") 
@@ -83,19 +76,13 @@ test_that("Hits work", {expect_equal(attack(100, 10), "Hit!")})
     ## [1] "Hit!"
     ## Test passed
 
-Here’s two examples that show my custom error code:
+Here’s an example that show my custom error code:
 
 ``` r
 attack("x", 10)
 ```
 
     ## Error in attack("x", 10): Your input must be numbers!
-
-``` r
-attack(c(1,5), 15)
-```
-
-    ## Error in attack(c(1, 5), 15): Too many numbers!
 
 And here’s some error tests in general:
 
