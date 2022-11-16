@@ -38,6 +38,10 @@ Here’s the function:
 #'
 #' @return Prints "hit!" or "miss!" depending on if the total "attack roll" is >= the AC of the "monster"
 #' 
+#' @example attack(3, 15)
+#' 
+#' @export
+#' 
 attack <- function(mod, ac) {
   if (!is.numeric(mod)) {
     stop("Your input must be numbers!")

@@ -1,0 +1,13 @@
+Package: DiceRoller
+Title: Roll an Attack in Dungeons and Dragons 
+Version: 0.1.0
+Authors@R: 
+    person("Molly", "Mastel", , "mastel.molly@gmail.com", role = c("aut", "cre"))
+Description: For players/DMs in Dungeons and Dragons. Enter an attack modifier,  enemy AC, and see if the attack hits or misses. It "rolls" the 20 sided dice for you (by picking a random number from 1-20), adds your modifier, and sees if that result is greater than or equal to the enemy AC. A "tie" is a "miss", per the rules in the Dungeon Master's Guide.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

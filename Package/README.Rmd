@@ -1,0 +1,43 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+## DiceRoller Function info 
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Have you ever forgotten your dice at home but remembered to bring your laptop to a D&D session? Are you tired of simple addition and wish that someone could do just one step of combat for you? Then this function is for you! 
+
+Simply enter your attack modifier, then the enemy AC, and R will print out if it hits or misses! 
+
+#### Installation
+
+You can install DiceRoller from github with:
+
+``` r
+install.packages("devtools")
+devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-mollym1")
+```
+
+#### Example
+
+Lets say you have an attack modifier of +2, and the enemy AC is 18:
+
+```{r example}
+library(DiceRoller)
+attack(2,18)
+```
+
+Prints "hit!" or "miss!" depending on if the total "attack roll" (which is the sum of your d20 roll and your modifier) is >= the AC of the "monster". If your attack roll is >= monster AC, prints "Hit!" Otherwise, prints "Miss!". Ties print "Hit!", per the rules in the *Dungeon Masters Guide*. 
